@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NEXORA | Gaming & Digital World</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #050816;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+        nav {
+            width: 100%;
+            padding: 22px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 8, 22, 0.85);
+            border-bottom: 1px solid rgba(120, 80, 255, 0.2);
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: #ffffff;
+        }
+
+        .logo span {
+            color: #7c5cff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #c8c8d8;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #8d75ff;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: #5b35d5;
+            filter: blur(180px);
+            opacity: 0.22;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+        }
+
+        .small-title {
+            color: #927cff;
+            font-size: 14px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(55px, 10vw, 110px);
+            letter-spacing: 10px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 35px rgba(124, 92, 255, 0.35);
+        }
+
+        .tagline {
+            color: #aaaabd;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .explore-btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #6246d9, #8c65ff);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 0 25px rgba(124, 92, 255, 0.3);
+            transition: 0.3s;
+        }
+
+        .explore-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 35px rgba(124, 92, 255, 0.55);
+        }
+
+        /* CARDS */
+        .section {
+            padding: 90px 7%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .card {
+            padding: 40px 25px;
+            background: rgba(20, 20, 45, 0.65);
+            border: 1px solid rgba(124, 92, 255, 0.2);
+            border-radius: 18px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(124, 92, 255, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .card-icon {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #9292a8;
+            line-height: 1.6;
+        }
+
+        .coming {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 6px 13px;
+            border-radius: 20px;
+            background: rgba(124, 92, 255, 0.12);
+            color: #927cff;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid rgba(124, 92, 255, 0.15);
+            color: #66667a;
+            font-size: 14px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 750px) {
+
+            nav {
+                padding: 18px 5%;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            h1 {
+                letter-spacing: 5px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 70px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">NEX<span>ORA</span></div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="gaming.html">Gaming</a></li>
+            <li><a href="videos.html">Videos</a></li>
+            <li><a href="photos.html">Photos</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                Welcome to the digital world
+            </div>
+
+            <h1>NEXORA</h1>
+
+            <p class="tagline">
+                Gaming • Videos • Photos • More
+            </p>
+
+            <a href="#explore" class="explore-btn">
+                EXPLORE NEXORA
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- EXPLORE SECTION -->
+    <section class="section" id="explore">
+
+        <h2 class="section-title">
+            Explore NEXORA
+        </h2>
+
+        <div class="cards">
+
+            <!-- GAMING -->
+            <div class="card">
+
+                <div class="card-icon">🎮</div>
+
+                <h3>Gaming</h3>
+
+                <p>
+                    Explore gaming content, moments and more.
+                </p>
+
+                <span class="coming">
+                    AVAILABLE
+                </span>
+
+            </div>
+
+
+            <!-- VIDEOS -->
+            <div class="card">
+
+                <div class="card-icon">🎬</div>
+
+                <h3>Videos</h3>
+
+                <p>
+                    Amazing video content is coming soon.
+                </p>
+
+                <span class="coming">
+                    COMING SOON
+                </span>
+
+            </div>
+
+
+            <!-- PHOTOS -->
+            <div class="card">
+
+                <div class="card-icon">📸</div>
+
+                <h3>Photos</h3>
+
+                <p>
+                    A collection of photos will be available soon.
+                </p>
+
+                <span class="coming">
+                    COMING SOON
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 NEXORA. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
