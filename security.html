@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NEXORA | Security</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#050816;
+    color:white;
+    min-height:100vh;
+}
+
+nav{
+    height:70px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 7%;
+    border-bottom:1px solid rgba(139,92,246,.25);
+}
+
+.logo{
+    color:#a855f7;
+    font-size:25px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.back{
+    color:#aaa;
+    text-decoration:none;
+}
+
+.back:hover{
+    color:#a855f7;
+}
+
+.container{
+    max-width:600px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.title h1{
+    font-size:40px;
+    background:linear-gradient(90deg,#8b5cf6,#d946ef);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.title p{
+    color:#888;
+    margin-top:10px;
+}
+
+.box{
+    background:#0b0f25;
+    border:1px solid rgba(139,92,246,.25);
+    border-radius:18px;
+    padding:35px;
+}
+
+.box h2{
+    margin-bottom:10px;
+}
+
+.description{
+    color:#777;
+    font-size:13px;
+    margin-bottom:28px;
+}
+
+label{
+    display:block;
+    color:#aaa;
+    font-size:13px;
+    margin-bottom:7px;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    margin-bottom:18px;
+    border-radius:9px;
+    border:1px solid rgba(139,92,246,.25);
+    background:#050816;
+    color:white;
+    outline:none;
+}
+
+input:focus{
+    border-color:#8b5cf6;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#8b5cf6;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#a855f7;
+}
+
+.hidden{
+    display:none;
+}
+
+.message{
+    margin-top:18px;
+    text-align:center;
+    font-size:13px;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        NEXORA
+    </div>
+
+    <a href="owner.html" class="back">
+        ← Owner Panel
+    </a>
+
+</nav>
+
+
+<main class="container">
+
+    <div class="title">
+
+        <h1>🔐 SECURITY</h1>
+
+        <p>
+            Manage your NEXORA owner account
+        </p>
+
+    </div>
+
+
+    <!-- STEP 1 -->
+
+    <div class="box" id="stepOne">
+
+        <h2>
+            Change Owner Login
+        </h2>
+
+        <p class="description">
+            Write your previous login details to
+            create a new owner login.
+        </p>
+
+
+        <label>
+            Previous Username
+        </label>
+
+        <input
+            type="text"
+            id="oldUsername"
+            placeholder="Write previous username">
+
+
+        <label>
+            Previous Password
+        </label>
+
+        <input
+            type="password"
+            id="oldPassword"
+            placeholder="Write previous password">
+
+
+        <button onclick="checkPrevious()">
+            CONTINUE
+        </button>
+
+
+        <div
+            class="message"
+            id="oldMessage">
+        </div>
+
+    </div>
+
+
+    <!-- STEP 2 -->
+
+    <div class="box hidden" id="stepTwo">
+
+        <h2>
+            Create A New Login
+        </h2>
+
+        <p class="description">
+            Your previous login is correct.
+            Now create a new owner username and password.
+        </p>
+
+
+        <label>
+            New Username
+        </label>
+
+        <input
+            type="text"
+            id="newUsername"
+            placeholder="Create new username">
+
+
+        <label>
+            New Password
+        </label>
+
+        <input
+            type="password"
+            id="newPassword"
+            placeholder="Create new password">
+
+
+        <label>
+            Confirm New Password
+        </label>
+
+        <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm new password">
+
+
+        <button onclick="saveNewLogin()">
+            SAVE NEW LOGIN
+        </button>
+
+
+        <div
+            class="message"
+            id="newMessage">
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+/*
+   CURRENT LOGIN
+   In this simple version:
+   Username = HAHA
+   Password = 2026
+*/
+
+let currentUsername = "HAHA";
+let currentPassword = "2026";
+
+
+/* CHECK OLD LOGIN */
+
+function checkPrevious(){
+
+    const oldUsername =
+        document.getElementById("oldUsername").value.trim();
+
+    const oldPassword =
+        document.getElementById("oldPassword").value;
+
+
+    const message =
+        document.getElementById("oldMessage");
+
+
+    if(
+        oldUsername === currentUsername &&
+        oldPassword === currentPassword
+    ){
+
+        message.textContent = "";
+
+        document.getElementById("stepOne")
+        .classList.add("hidden");
+
+        document.getElementById("stepTwo")
+        .classList.remove("hidden");
+
+    }
+
+    else{
+
+        message.textContent =
+            "❌ Previous username or password is incorrect.";
+
+    }
+
+}
+
+
+/* SAVE NEW LOGIN */
+
+function saveNewLogin(){
+
+    const newUsername =
+        document.getElementById("newUsername").value.trim();
+
+    const newPassword =
+        document.getElementById("newPassword").value;
+
+    const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+    const message =
+        document.getElementById("newMessage");
+
+
+    if(newUsername === "" || newPassword === ""){
+
+        message.textContent =
+            "❌ Please fill all fields.";
+
+        return;
+    }
+
+
+    if(newPassword !== confirmPassword){
+
+        message.textContent =
+            "❌ Passwords do not match.";
+
+        return;
+    }
+
+
+    currentUsername = newUsername;
+
+    currentPassword = newPassword;
+
+
+    message.textContent =
+        "✅ New login created successfully!";
+
+
+    document.getElementById("newUsername").value = "";
+
+    document.getElementById("newPassword").value = "";
+
+    document.getElementById("confirmPassword").value = "";
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NEXORA | Upload Game</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #050816;
+            color: white;
+            min-height: 100vh;
+        }
+
+        nav {
+            padding: 22px 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(5, 8, 22, 0.9);
+
+            border-bottom: 1px solid rgba(120, 80, 255, 0.2);
+
+            position: sticky;
+            top: 0;
+
+            z-index: 100;
+
+            backdrop-filter: blur(12px);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .logo span {
+            color: #7c5cff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #c8c8d8;
+            text-decoration: none;
+        }
+
+        .upload-page {
+            max-width: 850px;
+
+            margin: auto;
+
+            padding: 70px 25px;
+        }
+
+        .upload-page h1 {
+            text-align: center;
+
+            font-size: 45px;
+
+            letter-spacing: 4px;
+
+            margin-bottom: 10px;
+        }
+
+        .upload-page > p {
+            text-align: center;
+
+            color: #9292a8;
+
+            margin-bottom: 45px;
+        }
+
+        .form-box {
+            background: rgba(20, 20, 45, 0.65);
+
+            border: 1px solid rgba(124, 92, 255, 0.2);
+
+            border-radius: 20px;
+
+            padding: 35px;
+        }
+
+        .field {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+
+            margin-bottom: 10px;
+
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            border: 1px solid rgba(124, 92, 255, 0.25);
+
+            background: #0c1025;
+
+            color: white;
+
+            outline: none;
+
+            font-size: 15px;
+
+        }
+
+        textarea {
+            min-height: 150px;
+
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #7c5cff;
+        }
+
+        input[type="file"] {
+            padding: 12px;
+        }
+
+        .hint {
+            color: #77778d;
+
+            font-size: 13px;
+
+            margin-top: 8px;
+        }
+
+        .publish-btn {
+
+            width: 100%;
+
+            padding: 16px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: linear-gradient(
+                135deg,
+                #6246d9,
+                #8c65ff
+            );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+        .notice {
+
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 18px;
+
+            border-radius: 12px;
+
+            background: rgba(124, 92, 255, 0.1);
+
+            border: 1px solid rgba(124, 92, 255, 0.3);
+
+            color: #cfc7ff;
+
+            text-align: center;
+
+        }
+
+        footer {
+
+            text-align: center;
+
+            padding: 35px;
+
+            color: #66667a;
+
+            border-top: 1px solid rgba(124, 92, 255, 0.15);
+
+            margin-top: 50px;
+
+        }
+
+        @media (max-width: 750px) {
+
+            nav {
+                padding: 18px 5%;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .upload-page h1 {
+                font-size: 35px;
+            }
+
+            .form-box {
+                padding: 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <nav>
+
+        <div class="logo">
+            NEX<span>ORA</span>
+        </div>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="gaming.html">Gaming</a>
+            </li>
+
+            <li>
+                <a href="videos.html">Videos</a>
+            </li>
+
+            <li>
+                <a href="photos.html">Photos</a>
+            </li>
+
+            <li>
+                <a href="about.html">About</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <main class="upload-page">
+
+        <h1>
+            UPLOAD GAME
+        </h1>
+
+        <p>
+            Publish your game on NEXORA.
+        </p>
+
+
+        <form
+            class="form-box"
+            id="uploadForm"
+        >
+
+
+            <!-- GAME NAME -->
+
+            <div class="field">
+
+                <label>
+                    1] GAME NAME
+                </label>
+
+                <input
+                    type="text"
+                    id="gameName"
+                    placeholder="Enter game name"
+                    required
+                >
+
+            </div>
+
+
+            <!-- GAME PICTURES -->
+
+            <div class="field">
+
+                <label>
+                    2] GAME PICTURES
+                </label>
+
+                <input
+                    type="file"
+                    id="gamePictures"
+                    accept="image/*"
+                    multiple
+                    required
+                >
+
+                <div class="hint">
+                    Add 2–3 pictures of your game.
+                </div>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="field">
+
+                <label>
+                    3] GAME DESCRIPTION
+                </label>
+
+                <textarea
+                    id="gameDescription"
+                    placeholder="Tell people about your game..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- GAME FILE -->
+
+            <div class="field">
+
+                <label>
+                    4] GAME FILE
+                </label>
+
+                <input
+                    type="file"
+                    id="gameFile"
+                    required
+                >
+
+                <div class="hint">
+                    Upload your game file.
+                </div>
+
+            </div>
+
+
+            <!-- PUBLISH -->
+
+            <button
+                type="submit"
+                class="publish-btn"
+            >
+
+                PUBLISHED THIS GAME
+
+            </button>
+
+
+            <div
+                class="notice"
+                id="notice"
+            >
+
+                Your game has been submitted.
+                It will be reviewed and published within
+                24 hours.
+
+            </div>
+
+
+        </form>
+
+    </main>
+
+
+    <footer>
+
+        © 2026 NEXORA. All Rights Reserved.
+
+    </footer>
+
+
+    <script>
+
+        const form =
+            document.getElementById("uploadForm");
+
+        const notice =
+            document.getElementById("notice");
+
+
+        form.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+                notice.style.display = "block";
+
+                form.reset();
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NEXORA | Pending Uploads</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#050816;
+    color:white;
+    min-height:100vh;
+}
+
+nav{
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    background:#050816;
+    border-bottom:1px solid rgba(139,92,246,.25);
+}
+
+.logo{
+    color:#a855f7;
+    font-size:25px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.back{
+    color:#aaa;
+    text-decoration:none;
+}
+
+.back:hover{
+    color:#a855f7;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.title h1{
+    font-size:42px;
+    background:linear-gradient(90deg,#8b5cf6,#d946ef);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.title p{
+    color:#888;
+    margin-top:10px;
+}
+
+
+/* PENDING GAME */
+
+.game-box{
+    background:#0b0f25;
+    border:1px solid rgba(139,92,246,.25);
+    border-radius:18px;
+    padding:30px;
+    margin-bottom:20px;
+}
+
+.game-box h2{
+    margin-bottom:15px;
+}
+
+.game-info{
+    color:#999;
+    line-height:1.8;
+}
+
+.game-info strong{
+    color:white;
+}
+
+.buttons{
+    display:flex;
+    gap:12px;
+    margin-top:25px;
+    flex-wrap:wrap;
+}
+
+button{
+    border:none;
+    border-radius:9px;
+    padding:12px 20px;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.accept{
+    background:#16a34a;
+}
+
+.reject{
+    background:#dc2626;
+}
+
+.publish{
+    background:#8b5cf6;
+}
+
+button:hover{
+    opacity:.85;
+}
+
+.empty{
+    text-align:center;
+    padding:70px 20px;
+    border:1px solid rgba(139,92,246,.2);
+    border-radius:18px;
+    color:#777;
+}
+
+.empty-icon{
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        NEXORA
+    </div>
+
+    <a href="owner.html" class="back">
+        ← Owner Panel
+    </a>
+
+</nav>
+
+
+<main class="container">
+
+    <div class="title">
+
+        <h1>📤 PENDING UPLOADS</h1>
+
+        <p>
+            Review content submitted to NEXORA
+        </p>
+
+    </div>
+
+
+    <!-- EXAMPLE PENDING GAME -->
+
+    <div class="game-box">
+
+        <h2>
+            🎮 This Game
+        </h2>
+
+        <div class="game-info">
+
+            <p>
+                <strong>Game Name:</strong>
+                Example Game
+            </p>
+
+            <p>
+                <strong>Description:</strong>
+                This is an example uploaded game.
+            </p>
+
+            <p>
+                <strong>Pictures:</strong>
+                3 pictures
+            </p>
+
+            <p>
+                <strong>File:</strong>
+                Game file uploaded
+            </p>
+
+        </div>
+
+
+        <div class="buttons">
+
+            <button
+                class="accept"
+                onclick="acceptGame()">
+                ✅ ACCEPT
+            </button>
+
+            <button
+                class="reject"
+                onclick="rejectGame()">
+                ❌ REJECT
+            </button>
+
+            <button
+                class="publish"
+                onclick="publishGame()">
+                🚀 PUBLISH
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="empty">
+
+        <div class="empty-icon">
+            📂
+        </div>
+
+        <p>
+            Real user uploads will appear here
+            after the NEXORA database is connected.
+        </p>
+
+    </div>
+
+</main>
+
+
+<script>
+
+function acceptGame(){
+
+    alert(
+        "Game accepted.\n\n" +
+        "Real database action will be connected later."
+    );
+
+}
+
+function rejectGame(){
+
+    alert(
+        "Game rejected.\n\n" +
+        "Real database action will be connected later."
+    );
+
+}
+
+function publishGame(){
+
+    alert(
+        "Game published.\n\n" +
+        "Real database publishing will be connected later."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
