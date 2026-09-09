@@ -1,0 +1,3098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXORA - Free Fire Sensitivity</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#080812;
+    color:white;
+    min-height:100vh;
+}
+
+nav{
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    background:#0d0d1c;
+    border-bottom:1px solid rgba(124,92,255,.25);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+    letter-spacing:3px;
+}
+
+.logo span{
+    color:#8b6cff;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:#aaaabd;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.nav-links a:hover{
+    color:white;
+}
+
+.container{
+    width:92%;
+    max-width:1100px;
+    margin:auto;
+    padding:55px 0;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.hero h1{
+    font-size:48px;
+    letter-spacing:4px;
+    margin-bottom:12px;
+}
+
+.hero h1 span{
+    color:#8b6cff;
+}
+
+.hero p{
+    color:#9292a8;
+    font-size:16px;
+}
+
+.search-box{
+    max-width:700px;
+    margin:30px auto;
+    display:flex;
+    gap:10px;
+}
+
+.search-box input{
+    flex:1;
+    padding:17px 20px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:#151526;
+    color:white;
+    font-size:16px;
+    border:1px solid rgba(124,92,255,.3);
+}
+
+.search-box input:focus{
+    border-color:#8b6cff;
+}
+
+.search-box button{
+    padding:0 28px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#6045d8,#906eff);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.search-box button:hover{
+    transform:translateY(-2px);
+}
+
+#results{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.phone-card{
+    background:#111122;
+    border:1px solid rgba(124,92,255,.22);
+    border-radius:16px;
+    padding:22px;
+    transition:.25s;
+}
+
+.phone-card:hover{
+    transform:translateY(-5px);
+    border-color:#7658ed;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+.phone-card h3{
+    font-size:19px;
+    margin-bottom:14px;
+}
+
+.phone-info{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.info{
+    background:#19192d;
+    padding:9px;
+    border-radius:8px;
+    width:50%;
+    text-align:center;
+}
+
+.info small{
+    display:block;
+    color:#77778e;
+    font-size:11px;
+    margin-bottom:4px;
+}
+
+.info b{
+    font-size:13px;
+}
+
+.select-btn{
+    width:100%;
+    padding:11px;
+    border:none;
+    border-radius:9px;
+    background:#6d52df;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.select-btn:hover{
+    background:#8268ef;
+}
+
+.no-result{
+    grid-column:1/-1;
+    text-align:center;
+    padding:35px;
+    background:#111122;
+    border-radius:15px;
+    border:1px solid rgba(255,80,100,.25);
+    color:#ff7182;
+    font-size:18px;
+}
+
+#settingsBox{
+    display:none;
+    margin-top:45px;
+    background:#101021;
+    border:1px solid rgba(124,92,255,.35);
+    border-radius:20px;
+    padding:30px;
+}
+
+.selected-title{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.selected-title h2{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.selected-title p{
+    color:#88889d;
+}
+
+.settings-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.setting{
+    background:#18182b;
+    border-radius:13px;
+    padding:20px;
+    text-align:center;
+    border:1px solid rgba(124,92,255,.15);
+}
+
+.setting span{
+    display:block;
+    color:#9292a8;
+    font-size:13px;
+    margin-bottom:10px;
+}
+
+.setting strong{
+    font-size:28px;
+    color:#9b83ff;
+}
+
+.copy-all{
+    display:block;
+    margin:25px auto 0;
+    padding:13px 28px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#6045d8,#906eff);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.warning{
+    margin-top:20px;
+    padding:15px;
+    background:rgba(255,190,50,.07);
+    border:1px solid rgba(255,190,50,.2);
+    border-radius:10px;
+    color:#c4a96b;
+    font-size:13px;
+    text-align:center;
+}
+
+footer{
+    text-align:center;
+    padding:35px;
+    margin-top:50px;
+    border-top:1px solid rgba(124,92,255,.15);
+    color:#66667a;
+    font-size:13px;
+}
+
+@media(max-width:850px){
+    #results{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .settings-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+    nav{
+        padding:0 5%;
+    }
+
+    .nav-links{
+        gap:10px;
+    }
+
+    .nav-links a{
+        font-size:11px;
+    }
+
+    .hero h1{
+        font-size:35px;
+    }
+
+    .search-box{
+        flex-direction:column;
+    }
+
+    .search-box button{
+        padding:14px;
+    }
+
+    #results{
+        grid-template-columns:1fr;
+    }
+
+    .settings-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">NEX<span>ORA</span></div>
+
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="sensitivity.html">Sensitivity</a></li>
+        <li><a href="nickname.html">Nickname</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+    <div class="hero">
+        <h1>FREE FIRE <span>SENSITIVITY</span></h1>
+        <p>Search your mobile and get a recommended sensitivity setup</p>
+    </div>
+
+    <div class="search-box">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search Your Mobile e.g. OPPO A73"
+        >
+        <button onclick="searchPhone()">SEARCH</button>
+    </div>
+
+    <div id="results"></div>
+
+    <div id="settingsBox">
+
+        <div class="selected-title">
+            <h2 id="selectedName"></h2>
+            <p id="selectedInfo"></p>
+        </div>
+
+        <div class="settings-grid">
+
+            <div class="setting">
+                <span>General</span>
+                <strong id="general"></strong>
+            </div>
+
+            <div class="setting">
+                <span>Red Dot</span>
+                <strong id="redDot"></strong>
+            </div>
+
+            <div class="setting">
+                <span>2X Scope</span>
+                <strong id="scope2x"></strong>
+            </div>
+
+            <div class="setting">
+                <span>4X Scope</span>
+                <strong id="scope4x"></strong>
+            </div>
+
+            <div class="setting">
+                <span>Sniper Scope</span>
+                <strong id="sniper"></strong>
+            </div>
+
+            <div class="setting">
+                <span>Free Look</span>
+                <strong id="freeLook"></strong>
+            </div>
+
+        </div>
+
+        <button class="copy-all" onclick="copyAllSettings()">
+            📋 COPY ALL SETTINGS
+        </button>
+
+        <div class="warning">
+            ⚠️ These are recommended starting settings, not guaranteed values.
+            Touch response, FPS, screen size and personal play style can affect
+            the best sensitivity for your device.
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 NEXORA — Gaming & Tools Hub
+</footer>
+
+
+<script>
+
+/* =========================================================
+   NEXORA FREE FIRE MOBILE DATABASE
+   ========================================================= */
+
+const phones = [
+
+/* =========================
+   VIVO
+========================= */
+
+{
+name:"Vivo Y2",
+ram:"2 GB RAM",
+storage:"16 GB Storage",
+general:170,redDot:160,scope2x:145,scope4x:125,sniper:90,freeLook:170
+},
+
+{
+name:"Vivo Y3",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:90,freeLook:175
+},
+
+{
+name:"Vivo Y11",
+ram:"3 GB RAM",
+storage:"32 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:90,freeLook:175
+},
+
+{
+name:"Vivo Y12",
+ram:"3 GB RAM",
+storage:"64 GB Storage",
+general:178,redDot:168,scope2x:152,scope4x:132,sniper:92,freeLook:178
+},
+
+{
+name:"Vivo Y15",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:180
+},
+
+{
+name:"Vivo Y16",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:182,redDot:172,scope2x:158,scope4x:138,sniper:95,freeLook:182
+},
+
+{
+name:"Vivo Y17",
+ram:"4 GB RAM",
+storage:"128 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Vivo Y20",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Vivo Y21",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:188,redDot:178,scope2x:162,scope4x:142,sniper:100,freeLook:188
+},
+
+{
+name:"Vivo Y22",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Vivo Y27",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Vivo Y28",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Vivo Y28",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:198,redDot:188,scope2x:172,scope4x:152,sniper:108,freeLook:198
+},
+
+{
+name:"Vivo Y36",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:172,scope4x:152,sniper:108,freeLook:198
+},
+
+{
+name:"Vivo Y100",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:190,scope2x:175,scope4x:155,sniper:110,freeLook:200
+},
+
+{
+name:"Vivo V20",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Vivo V21",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"Vivo V23",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:110,freeLook:200
+},
+
+{
+name:"Vivo V25",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"Vivo V27",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+/* =========================
+   IPHONE
+========================= */
+
+{
+name:"iPhone 6",
+ram:"1 GB RAM",
+storage:"16 GB Storage",
+general:145,redDot:135,scope2x:120,scope4x:105,sniper:75,freeLook:150
+},
+
+{
+name:"iPhone 6s",
+ram:"2 GB RAM",
+storage:"32 GB Storage",
+general:155,redDot:145,scope2x:130,scope4x:110,sniper:80,freeLook:160
+},
+
+{
+name:"iPhone 7",
+ram:"2 GB RAM",
+storage:"32 GB Storage",
+general:165,redDot:155,scope2x:140,scope4x:120,sniper:85,freeLook:170
+},
+
+{
+name:"iPhone 8",
+ram:"2 GB RAM",
+storage:"64 GB Storage",
+general:170,redDot:160,scope2x:145,scope4x:125,sniper:88,freeLook:175
+},
+
+{
+name:"iPhone X",
+ram:"3 GB RAM",
+storage:"64 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:92,freeLook:180
+},
+
+{
+name:"iPhone XR",
+ram:"3 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:95,freeLook:185
+},
+
+{
+name:"iPhone XS",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"iPhone 11",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:192,redDot:182,scope2x:168,scope4x:148,sniper:102,freeLook:192
+},
+
+{
+name:"iPhone 11 Pro",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"iPhone 11 Pro Max",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"iPhone 12",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:195,redDot:185,scope2x:172,scope4x:152,sniper:105,freeLook:195
+},
+
+{
+name:"iPhone 12 Pro",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"iPhone 12 Pro Max",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"iPhone 13",
+ram:"4 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"iPhone 13 Pro",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"iPhone 13 Pro Max",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"iPhone 14",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"iPhone 14 Pro",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+{
+name:"iPhone 14 Pro Max",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+{
+name:"iPhone 15",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+{
+name:"iPhone 15 Pro",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+{
+name:"iPhone 15 Pro Max",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+/* =========================
+   INFINIX
+========================= */
+
+{
+name:"Infinix Hot 8",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:90,freeLook:175
+},
+
+{
+name:"Infinix Hot 9",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:178,redDot:168,scope2x:152,scope4x:132,sniper:92,freeLook:178
+},
+
+{
+name:"Infinix Hot 10",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:180
+},
+
+{
+name:"Infinix Hot 11",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:182,redDot:172,scope2x:158,scope4x:138,sniper:95,freeLook:182
+},
+
+{
+name:"Infinix Hot 12",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:188,redDot:178,scope2x:162,scope4x:142,sniper:100,freeLook:188
+},
+
+{
+name:"Infinix Hot 20",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Infinix Hot 30",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Infinix Hot 40",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Infinix Hot 50i",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Infinix Note 8",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:188,redDot:178,scope2x:162,scope4x:142,sniper:100,freeLook:188
+},
+
+{
+name:"Infinix Note 10",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:192,redDot:182,scope2x:168,scope4x:148,sniper:102,freeLook:192
+},
+
+{
+name:"Infinix Note 11",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:194,redDot:184,scope2x:170,scope4x:150,sniper:104,freeLook:194
+},
+
+{
+name:"Infinix Note 12",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Infinix Note 30",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"Infinix Zero 20",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"Infinix GT 10 Pro",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+/* =========================
+   SAMSUNG
+========================= */
+{
+name:"Samsung Galaxy S1",
+ram:"512 MB RAM",
+storage:"8 GB Storage",
+general:150,redDot:140,scope2x:125,scope4x:110,sniper:78,freeLook:155
+},
+
+{
+name:"Samsung Galaxy S2",
+ram:"1 GB RAM",
+storage:"16 GB Storage",
+general:150,redDot:140,scope2x:125,scope4x:110,sniper:78,freeLook:155
+},
+
+{
+name:"Samsung Galaxy S3",
+ram:"1 GB RAM",
+storage:"16 GB Storage",
+general:155,redDot:145,scope2x:130,scope4x:112,sniper:80,freeLook:158
+},
+
+{
+name:"Samsung Galaxy S4",
+ram:"2 GB RAM",
+storage:"16 GB Storage",
+general:155,redDot:145,scope2x:130,scope4x:115,sniper:82,freeLook:160
+},
+
+{
+name:"Samsung Galaxy S5",
+ram:"2 GB RAM",
+storage:"16 GB Storage",
+general:160,redDot:150,scope2x:135,scope4x:118,sniper:85,freeLook:165
+},
+
+{
+name:"Samsung Galaxy S6",
+ram:"3 GB RAM",
+storage:"32 GB Storage",
+general:165,redDot:155,scope2x:140,scope4x:120,sniper:88,freeLook:170
+},
+
+{
+name:"Samsung Galaxy S7",
+ram:"4 GB RAM",
+storage:"32 GB Storage",
+general:170,redDot:160,scope2x:145,scope4x:125,sniper:90,freeLook:175
+},
+
+{
+name:"Samsung Galaxy S8",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:92,freeLook:180
+},
+
+{
+name:"Samsung Galaxy S9",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:185
+},
+
+{
+name:"Samsung Galaxy S10",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:92,freeLook:180
+},
+
+{
+name:"Samsung Galaxy S10 Lite",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:170,redDot:160,scope2x:145,scope4x:125,sniper:90,freeLook:175
+},
+
+{
+name:"Samsung Galaxy S20",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:185
+},
+
+{
+name:"Samsung Galaxy S20 FE",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:190
+},
+
+{
+name:"Samsung Galaxy S21",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:185
+},
+
+{
+name:"Samsung Galaxy S21 FE",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:190
+},
+
+{
+name:"Samsung Galaxy S22",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:185
+},
+
+{
+name:"Samsung Galaxy S22 Plus",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:185
+},
+
+{
+name:"Samsung Galaxy S22 Ultra",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:92,freeLook:180
+},
+
+{
+name:"Samsung Galaxy S23",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:185
+},
+
+{
+name:"Samsung Galaxy S23 Plus",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:185
+},
+
+{
+name:"Samsung Galaxy S23 Ultra",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:92,freeLook:180
+},
+
+{
+name:"Samsung Galaxy S24",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:92,freeLook:180
+},
+
+{
+name:"Samsung Galaxy S24 Plus",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:170,redDot:160,scope2x:145,scope4x:125,sniper:90,freeLook:175
+},
+
+{
+name:"Samsung Galaxy S24 Ultra",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:165,redDot:155,scope2x:140,scope4x:120,sniper:88,freeLook:170
+},
+
+{
+name:"Samsung Galaxy S25",
+ram:"12 GB RAM",
+storage:"128 GB Storage",
+general:170,redDot:160,scope2x:145,scope4x:125,sniper:90,freeLook:175
+},
+
+{
+name:"Samsung Galaxy S25 Plus",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:165,redDot:155,scope2x:140,scope4x:120,sniper:88,freeLook:170
+},
+
+{
+name:"Samsung Galaxy S25 Ultra",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:160,redDot:150,scope2x:135,scope4x:115,sniper:85,freeLook:165
+},
+
+{
+name:"Samsung Galaxy S26",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:165,redDot:155,scope2x:140,scope4x:120,sniper:88,freeLook:170
+},
+
+{
+name:"Samsung Galaxy S26 Plus",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:160,redDot:150,scope2x:135,scope4x:115,sniper:85,freeLook:165
+},
+
+{
+name:"Samsung Galaxy S26 Ultra",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:155,redDot:145,scope2x:130,scope4x:110,sniper:82,freeLook:160
+},
+{
+name:"Samsung Galaxy J2",
+ram:"1 GB RAM",
+storage:"8 GB Storage",
+general:150,redDot:140,scope2x:125,scope4x:110,sniper:78,freeLook:155
+},
+
+{
+name:"Samsung Galaxy J5",
+ram:"2 GB RAM",
+storage:"16 GB Storage",
+general:160,redDot:150,scope2x:135,scope4x:115,sniper:82,freeLook:165
+},
+
+{
+name:"Samsung Galaxy J7",
+ram:"2 GB RAM",
+storage:"16 GB Storage",
+general:165,redDot:155,scope2x:140,scope4x:120,sniper:85,freeLook:170
+},
+
+{
+name:"Samsung Galaxy A10",
+ram:"2 GB RAM",
+storage:"32 GB Storage",
+general:170,redDot:160,scope2x:145,scope4x:125,sniper:88,freeLook:175
+},
+
+{
+name:"Samsung Galaxy A12",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:180
+},
+
+{
+name:"Samsung Galaxy A13",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Samsung Galaxy A14",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:188,redDot:178,scope2x:162,scope4x:142,sniper:100,freeLook:188
+},
+
+{
+name:"Samsung Galaxy A15",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:192,redDot:182,scope2x:168,scope4x:148,sniper:102,freeLook:192
+},
+
+{
+name:"Samsung Galaxy A20",
+ram:"3 GB RAM",
+storage:"32 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:180
+},
+
+{
+name:"Samsung Galaxy A30",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Samsung Galaxy A50",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Samsung Galaxy A51",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Samsung Galaxy A52",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Samsung Galaxy A53",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"Samsung Galaxy A54",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"Samsung Galaxy S20",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"Samsung Galaxy S21",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+{
+name:"Samsung Galaxy S22",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:115,freeLook:200
+},
+
+{
+name:"Samsung Galaxy S23",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+{
+name:"Samsung Galaxy S24",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+/* =========================
+   OPPO
+========================= */
+
+{
+name:"OPPO A3",
+ram:"2 GB RAM",
+storage:"16 GB Storage",
+general:165,redDot:155,scope2x:140,scope4x:120,sniper:85,freeLook:170
+},
+
+{
+name:"OPPO A5",
+ram:"3 GB RAM",
+storage:"32 GB Storage",
+general:170,redDot:160,scope2x:145,scope4x:125,sniper:88,freeLook:175
+},
+
+{
+name:"OPPO A12",
+ram:"3 GB RAM",
+storage:"32 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:90,freeLook:175
+},
+
+{
+name:"OPPO A15",
+ram:"3 GB RAM",
+storage:"32 GB Storage",
+general:178,redDot:168,scope2x:152,scope4x:132,sniper:92,freeLook:178
+},
+
+{
+name:"OPPO A16",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:180
+},
+
+{
+name:"OPPO A17",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:182,redDot:172,scope2x:158,scope4x:138,sniper:95,freeLook:182
+},
+
+{
+name:"OPPO A31",
+ram:"4 GB RAM",
+storage:"128 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"OPPO A38",
+ram:"4 GB RAM",
+storage:"128 GB Storage",
+general:188,redDot:178,scope2x:162,scope4x:142,sniper:100,freeLook:188
+},
+
+{
+name:"OPPO A52",
+ram:"4 GB RAM",
+storage:"128 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"OPPO A53",
+ram:"4 GB RAM",
+storage:"128 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"OPPO A54",
+ram:"4 GB RAM",
+storage:"128 GB Storage",
+general:192,redDot:182,scope2x:168,scope4x:148,sniper:102,freeLook:192
+},
+
+{
+name:"OPPO A57",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"OPPO A58",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"OPPO A73",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:185,redDot:175,scope2x:155,scope4x:135,sniper:95,freeLook:185
+},
+
+{
+name:"OPPO A74",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"OPPO A76",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"OPPO A77",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"OPPO A78",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"OPPO A79",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"OPPO A96",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"OPPO A98",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+{
+name:"OPPO F11",
+ram:"4 GB RAM",
+storage:"128 GB Storage",
+general:188,redDot:178,scope2x:162,scope4x:142,sniper:100,freeLook:188
+},
+
+{
+name:"OPPO F15",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"OPPO F17",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"OPPO F19",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"OPPO F21 Pro",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"OPPO Reno 5",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"OPPO Reno 6",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+{
+name:"OPPO Reno 7",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:115,freeLook:200
+},
+
+{
+name:"OPPO Reno 8",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+/* =========================
+   REDMI
+========================= */
+
+{
+name:"Redmi 8",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:180
+},
+
+{
+name:"Redmi 8A",
+ram:"3 GB RAM",
+storage:"32 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:90,freeLook:175
+},
+
+{
+name:"Redmi 9",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Redmi 9A",
+ram:"2 GB RAM",
+storage:"32 GB Storage",
+general:170,redDot:160,scope2x:145,scope4x:125,sniper:88,freeLook:175
+},
+
+{
+name:"Redmi 9C",
+ram:"3 GB RAM",
+storage:"64 GB Storage",
+general:178,redDot:168,scope2x:152,scope4x:132,sniper:92,freeLook:178
+},
+
+{
+name:"Redmi 9T",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:188,redDot:178,scope2x:162,scope4x:142,sniper:100,freeLook:188
+},
+
+{
+name:"Redmi 10",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Redmi 10C",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Redmi 12C",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:188,redDot:178,scope2x:162,scope4x:142,sniper:100,freeLook:188
+},
+
+{
+name:"Redmi 12",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Redmi 13C",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"Redmi Note 7",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Redmi Note 8",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Redmi Note 9",
+ram:"4 GB RAM",
+storage:"128 GB Storage",
+general:192,redDot:182,scope2x:168,scope4x:148,sniper:102,freeLook:192
+},
+
+{
+name:"Redmi Note 10",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Redmi Note 11",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Redmi Note 12",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"Redmi Note 12 Pro",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"Redmi Note 13",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+{
+name:"Redmi Note 13 Pro",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+/* =========================
+   XIAOMI
+========================= */
+
+{
+name:"Xiaomi Mi 8",
+ram:"6 GB RAM",
+storage:"64 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Xiaomi Mi 9",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Xiaomi Mi 10",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Xiaomi Mi 11",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"Xiaomi 12",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"Xiaomi 13",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:115,freeLook:200
+},
+
+{
+name:"Xiaomi 14",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+{
+name:"Xiaomi 14T",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+/* =========================
+   POCO
+========================= */
+
+{
+name:"POCO C3",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:180
+},
+
+{
+name:"POCO C31",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:180
+},
+
+{
+name:"POCO C40",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"POCO C51",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:188,redDot:178,scope2x:162,scope4x:142,sniper:100,freeLook:188
+},
+
+{
+name:"POCO C55",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"POCO C65",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"POCO M2",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"POCO M3",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:192,redDot:182,scope2x:168,scope4x:148,sniper:102,freeLook:192
+},
+
+{
+name:"POCO M4 Pro",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"POCO M5",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"POCO X3",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"POCO X4 Pro",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"POCO X5",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"POCO X6",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+{
+name:"POCO F3",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"POCO F5",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+{
+name:"POCO F6",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+/* =========================
+   REALME
+========================= */
+
+{
+name:"Realme C11",
+ram:"2 GB RAM",
+storage:"32 GB Storage",
+general:170,redDot:160,scope2x:145,scope4x:125,sniper:88,freeLook:175
+},
+
+{
+name:"Realme C12",
+ram:"3 GB RAM",
+storage:"32 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:90,freeLook:175
+},
+
+{
+name:"Realme C15",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:180
+},
+
+{
+name:"Realme C20",
+ram:"2 GB RAM",
+storage:"32 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:90,freeLook:175
+},
+
+{
+name:"Realme C21",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Realme C25",
+ram:"4 GB RAM",
+storage:"128 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Realme C30",
+ram:"3 GB RAM",
+storage:"32 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:180
+},
+
+{
+name:"Realme C31",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Realme C33",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:188,redDot:178,scope2x:162,scope4x:142,sniper:100,freeLook:188
+},
+
+{
+name:"Realme C35",
+ram:"4 GB RAM",
+storage:"128 GB Storage",
+general:192,redDot:182,scope2x:168,scope4x:148,sniper:102,freeLook:192
+},
+
+{
+name:"Realme C51",
+ram:"4 GB RAM",
+storage:"128 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Realme C53",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Realme C55",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Realme C61",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Realme C65",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"Realme 5",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Realme 6",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Realme 7",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Realme 8",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"Realme 9",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"Realme 10",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+{
+name:"Realme 11",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:115,freeLook:200
+},
+
+{
+name:"Realme 12",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+{
+name:"Realme GT",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+/* =========================
+   TECNO
+========================= */
+
+{
+name:"Tecno Spark 6",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:180
+},
+
+{
+name:"Tecno Spark 7",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Tecno Spark 8",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:188,redDot:178,scope2x:162,scope4x:142,sniper:100,freeLook:188
+},
+
+{
+name:"Tecno Spark 9",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:192,redDot:182,scope2x:168,scope4x:148,sniper:102,freeLook:192
+},
+
+{
+name:"Tecno Spark 10",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Tecno Spark 20",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Tecno Spark 30",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"Tecno Pova 2",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Tecno Pova 3",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Tecno Pova 4",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"Tecno Pova 5",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+{
+name:"Tecno Camon 12",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Tecno Camon 15",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:188,redDot:178,scope2x:162,scope4x:142,sniper:100,freeLook:188
+},
+
+{
+name:"Tecno Camon 16",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:192,redDot:182,scope2x:168,scope4x:148,sniper:102,freeLook:192
+},
+
+{
+name:"Tecno Camon 17",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Tecno Camon 18",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Tecno Camon 19",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"Tecno Camon 20",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+/* =========================
+   ONEPLUS
+========================= */
+
+{
+name:"OnePlus 5",
+ram:"6 GB RAM",
+storage:"64 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"OnePlus 6",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"OnePlus 7",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"OnePlus 8",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"OnePlus 9",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"OnePlus 10 Pro",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:115,freeLook:200
+},
+
+{
+name:"OnePlus 11",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+{
+name:"OnePlus 12",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+{
+name:"OnePlus 13",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+{
+name:"OnePlus Nord",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"OnePlus Nord 2",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"OnePlus Nord 3",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+/* =========================
+   MOTOROLA
+========================= */
+
+{
+name:"Motorola Moto E6",
+ram:"2 GB RAM",
+storage:"16 GB Storage",
+general:165,redDot:155,scope2x:140,scope4x:120,sniper:85,freeLook:170
+},
+
+{
+name:"Motorola Moto E7",
+ram:"2 GB RAM",
+storage:"32 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:90,freeLook:175
+},
+
+{
+name:"Motorola Moto E13",
+ram:"2 GB RAM",
+storage:"64 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:180
+},
+
+{
+name:"Motorola Moto G8",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Motorola Moto G9",
+ram:"4 GB RAM",
+storage:"128 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Motorola Moto G10",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Motorola Moto G30",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Motorola Moto G60",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Motorola Moto G73",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"Motorola Moto G84",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+{
+name:"Motorola Edge 30",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:115,freeLook:200
+},
+
+{
+name:"Motorola Edge 40",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+/* =========================
+   NOKIA
+========================= */
+
+{
+name:"Nokia 2",
+ram:"1 GB RAM",
+storage:"8 GB Storage",
+general:150,redDot:140,scope2x:125,scope4x:110,sniper:78,freeLook:155
+},
+
+{
+name:"Nokia 3",
+ram:"2 GB RAM",
+storage:"16 GB Storage",
+general:160,redDot:150,scope2x:135,scope4x:115,sniper:82,freeLook:165
+},
+
+{
+name:"Nokia 5",
+ram:"2 GB RAM",
+storage:"16 GB Storage",
+general:165,redDot:155,scope2x:140,scope4x:120,sniper:85,freeLook:170
+},
+
+{
+name:"Nokia 6",
+ram:"3 GB RAM",
+storage:"32 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:90,freeLook:175
+},
+
+{
+name:"Nokia 7",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Nokia 8",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Nokia 2.4",
+ram:"2 GB RAM",
+storage:"32 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:90,freeLook:175
+},
+
+{
+name:"Nokia 3.4",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Nokia 5.4",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Nokia G10",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Nokia G20",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Nokia G21",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Nokia G50",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Nokia X10",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Nokia X20",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+/* =========================
+   HUAWEI
+========================= */
+
+{
+name:"Huawei Y5",
+ram:"2 GB RAM",
+storage:"16 GB Storage",
+general:165,redDot:155,scope2x:140,scope4x:120,sniper:85,freeLook:170
+},
+
+{
+name:"Huawei Y6",
+ram:"2 GB RAM",
+storage:"32 GB Storage",
+general:170,redDot:160,scope2x:145,scope4x:125,sniper:88,freeLook:175
+},
+
+{
+name:"Huawei Y7",
+ram:"3 GB RAM",
+storage:"32 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:90,freeLook:175
+},
+
+{
+name:"Huawei Y9",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Huawei Nova 3",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Huawei Nova 5T",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Huawei Nova 7",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"Huawei P30",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Huawei P40",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+{
+name:"Huawei Mate 20",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Huawei Mate 30",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+/* =========================
+   HONOR
+========================= */
+
+{
+name:"Honor 8",
+ram:"4 GB RAM",
+storage:"32 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:180
+},
+
+{
+name:"Honor 9",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Honor 10",
+ram:"4 GB RAM",
+storage:"128 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Honor 20",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Honor 30",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Honor 50",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"Honor 70",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"Honor 90",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+{
+name:"Honor 200",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+{
+name:"Honor X7b",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Honor X8",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"Honor X9",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+{
+name:"Honor X9b",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+{
+name:"Honor Magic 5 Pro",
+ram:"12 GB RAM",
+storage:"512 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+/* =========================
+   GOOGLE PIXEL
+========================= */
+
+{
+name:"Google Pixel 3",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"Google Pixel 4",
+ram:"6 GB RAM",
+storage:"64 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Google Pixel 5",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Google Pixel 6",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"Google Pixel 6 Pro",
+ram:"12 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+{
+name:"Google Pixel 6a",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"Google Pixel 7",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+{
+name:"Google Pixel 7 Pro",
+ram:"12 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+{
+name:"Google Pixel 7a",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+{
+name:"Google Pixel 8",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+{
+name:"Google Pixel 8 Pro",
+ram:"12 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+{
+name:"Google Pixel 9",
+ram:"12 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+/* =========================
+   SONY
+========================= */
+
+{
+name:"Sony Xperia XZ",
+ram:"3 GB RAM",
+storage:"32 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:180
+},
+
+{
+name:"Sony Xperia XZ1",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:188,redDot:178,scope2x:162,scope4x:142,sniper:100,freeLook:188
+},
+
+{
+name:"Sony Xperia 1",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Sony Xperia 1 II",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"Sony Xperia 1 III",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+{
+name:"Sony Xperia 1 IV",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+{
+name:"Sony Xperia 5 II",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"Sony Xperia 5 III",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"Sony Xperia 10 III",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"Sony Xperia 10 IV",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"Sony Xperia Pro-I",
+ram:"12 GB RAM",
+storage:"512 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+/* =========================
+   ASUS
+========================= */
+
+{
+name:"ASUS Zenfone 5",
+ram:"4 GB RAM",
+storage:"64 GB Storage",
+general:185,redDot:175,scope2x:160,scope4x:140,sniper:98,freeLook:185
+},
+
+{
+name:"ASUS Zenfone 6",
+ram:"6 GB RAM",
+storage:"128 GB Storage",
+general:195,redDot:185,scope2x:170,scope4x:150,sniper:105,freeLook:195
+},
+
+{
+name:"ASUS Zenfone 7",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"ASUS Zenfone 8",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+{
+name:"ASUS Zenfone 9",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:196,scope2x:184,scope4x:164,sniper:115,freeLook:200
+},
+
+{
+name:"ASUS Zenfone 10",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+{
+name:"ASUS ROG Phone 2",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+{
+name:"ASUS ROG Phone 3",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+{
+name:"ASUS ROG Phone 5",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+{
+name:"ASUS ROG Phone 6",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+{
+name:"ASUS ROG Phone 7",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+/* =========================
+   ZTE
+========================= */
+
+{
+name:"ZTE Blade A3",
+ram:"2 GB RAM",
+storage:"32 GB Storage",
+general:165,redDot:155,scope2x:140,scope4x:120,sniper:85,freeLook:170
+},
+
+{
+name:"ZTE Blade A5",
+ram:"2 GB RAM",
+storage:"32 GB Storage",
+general:170,redDot:160,scope2x:145,scope4x:125,sniper:88,freeLook:175
+},
+
+{
+name:"ZTE Blade A7",
+ram:"3 GB RAM",
+storage:"64 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:90,freeLook:175
+},
+
+{
+name:"ZTE Blade A31",
+ram:"2 GB RAM",
+storage:"32 GB Storage",
+general:170,redDot:160,scope2x:145,scope4x:125,sniper:88,freeLook:175
+},
+
+{
+name:"ZTE Blade A51",
+ram:"2 GB RAM",
+storage:"32 GB Storage",
+general:175,redDot:165,scope2x:150,scope4x:130,sniper:90,freeLook:175
+},
+
+{
+name:"ZTE Blade A52",
+ram:"2 GB RAM",
+storage:"64 GB Storage",
+general:180,redDot:170,scope2x:155,scope4x:135,sniper:95,freeLook:180
+},
+
+{
+name:"ZTE Blade V40",
+ram:"4 GB RAM",
+storage:"128 GB Storage",
+general:190,redDot:180,scope2x:165,scope4x:145,sniper:100,freeLook:190
+},
+
+{
+name:"ZTE Blade V50",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:198,redDot:188,scope2x:175,scope4x:155,sniper:108,freeLook:198
+},
+
+{
+name:"ZTE Axon 10 Pro",
+ram:"8 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:190,scope2x:178,scope4x:158,sniper:110,freeLook:200
+},
+
+{
+name:"ZTE Axon 20",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:192,scope2x:180,scope4x:160,sniper:112,freeLook:200
+},
+
+{
+name:"ZTE Axon 30",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:112,freeLook:200
+},
+
+{
+name:"ZTE Axon 40",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+{
+name:"ZTE Axon 50",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+/* =========================
+   NUBIA / REDMAGIC
+========================= */
+
+{
+name:"Nubia RedMagic 5G",
+ram:"8 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:194,scope2x:182,scope4x:162,sniper:115,freeLook:200
+},
+
+{
+name:"Nubia RedMagic 6",
+ram:"12 GB RAM",
+storage:"128 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+{
+name:"Nubia RedMagic 7",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+{
+name:"Nubia RedMagic 8 Pro",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+},
+
+{
+name:"Nubia RedMagic 9 Pro",
+ram:"12 GB RAM",
+storage:"256 GB Storage",
+general:200,redDot:198,scope2x:186,scope4x:166,sniper:115,freeLook:200
+}
+
+];
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+const searchInput = document.getElementById("searchInput");
+const results = document.getElementById("results");
+
+searchInput.addEventListener("keydown", function(event){
+
+    if(event.key === "Enter"){
+        searchPhone();
+    }
+
+});
+
+
+function normalize(text){
+
+    return text
+        .toLowerCase()
+        .replace(/[\s\-_]+/g,"")
+        .trim();
+
+}
+
+
+function searchPhone(){
+
+    const query = normalize(searchInput.value);
+
+    results.innerHTML = "";
+
+    document.getElementById("settingsBox").style.display = "none";
+
+    if(!query){
+
+        results.innerHTML = `
+            <div class="no-result">
+                Please enter a mobile name.
+            </div>
+        `;
+
+        return;
+    }
+
+    const found = phones.filter(phone =>
+        normalize(phone.name).includes(query)
+    );
+
+    if(found.length === 0){
+
+        results.innerHTML = `
+            <div class="no-result">
+                ❌ No Mobile Found
+                <br>
+                <small style="color:#77778e;">
+                    This mobile is not available in the NEXORA database.
+                </small>
+            </div>
+        `;
+
+        return;
+    }
+
+    found.forEach((phone,index)=>{
+
+        const card = document.createElement("div");
+
+        card.className = "phone-card";
+
+        card.innerHTML = `
+
+            <h3>${phone.name}</h3>
+
+            <div class="phone-info">
+
+                <div class="info">
+                    <small>RAM</small>
+                    <b>${phone.ram}</b>
+                </div>
+
+                <div class="info">
+                    <small>STORAGE</small>
+                    <b>${phone.storage}</b>
+                </div>
+
+            </div>
+
+            <button class="select-btn">
+                SELECT
+            </button>
+        `;
+
+        card.querySelector(".select-btn").addEventListener("click",()=>{
+            selectPhone(phone);
+        });
+
+        results.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================================
+   SELECT PHONE
+========================================================= */
+
+let currentPhone = null;
+
+function selectPhone(phone){
+
+    currentPhone = phone;
+
+    document.getElementById("settingsBox").style.display = "block";
+
+    document.getElementById("selectedName").textContent =
+        phone.name;
+
+    document.getElementById("selectedInfo").textContent =
+        phone.ram + " • " + phone.storage;
+
+    document.getElementById("general").textContent =
+        phone.general;
+
+    document.getElementById("redDot").textContent =
+        phone.redDot;
+
+    document.getElementById("scope2x").textContent =
+        phone.scope2x;
+
+    document.getElementById("scope4x").textContent =
+        phone.scope4x;
+
+    document.getElementById("sniper").textContent =
+        phone.sniper;
+
+    document.getElementById("freeLook").textContent =
+        phone.freeLook;
+
+    document.getElementById("settingsBox").scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+}
+
+
+/* =========================================================
+   COPY SETTINGS
+========================================================= */
+
+function copyAllSettings(){
+
+    if(!currentPhone) return;
+
+    const text =
+
+`${currentPhone.name}
+RAM: ${currentPhone.ram}
+Storage: ${currentPhone.storage}
+
+General: ${currentPhone.general}
+Red Dot: ${currentPhone.redDot}
+2X Scope: ${currentPhone.scope2x}
+4X Scope: ${currentPhone.scope4x}
+Sniper Scope: ${currentPhone.sniper}
+Free Look: ${currentPhone.freeLook}`;
+
+    navigator.clipboard.writeText(text)
+    .then(()=>{
+
+        const button = document.querySelector(".copy-all");
+
+        const oldText = button.textContent;
+
+        button.textContent = "✅ COPIED!";
+
+        setTimeout(()=>{
+            button.textContent = oldText;
+        },1500);
+
+    })
+    .catch(()=>{
+
+        const textarea = document.createElement("textarea");
+
+        textarea.value = text;
+
+        document.body.appendChild(textarea);
+
+        textarea.select();
+
+        document.execCommand("copy");
+
+        textarea.remove();
+
+        alert("Settings copied!");
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

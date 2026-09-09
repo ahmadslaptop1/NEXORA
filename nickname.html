@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXORA - Nickname Designer</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:
+        radial-gradient(circle at top,#35105f 0%,#12091f 35%,#07040d 75%);
+    color:white;
+    min-height:100vh;
+}
+
+header{
+    text-align:center;
+    padding:35px 15px 20px;
+}
+
+.logo{
+    font-size:34px;
+    font-weight:900;
+    letter-spacing:4px;
+    color:#d78cff;
+    text-shadow:0 0 20px #a832ff;
+}
+
+h1{
+    margin-top:15px;
+    font-size:30px;
+}
+
+.subtitle{
+    color:#aaa;
+    margin-top:8px;
+}
+
+.container{
+    width:95%;
+    max-width:1100px;
+    margin:auto;
+}
+
+.generator{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(200,100,255,.25);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 0 30px rgba(150,40,255,.12);
+}
+
+input{
+    width:100%;
+    padding:16px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:#120b1c;
+    color:white;
+    font-size:17px;
+    border:1px solid #563074;
+}
+
+.generate-btn{
+    width:100%;
+    margin-top:15px;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(90deg,#8e2de2,#c850ff);
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.generate-btn:hover{
+    opacity:.9;
+}
+
+.categories{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:25px 0;
+}
+
+.category{
+    padding:11px 16px;
+    border:1px solid #623680;
+    background:#160d21;
+    color:white;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+.category.active{
+    background:linear-gradient(90deg,#7b2cbf,#b44cff);
+    border-color:#d18aff;
+}
+
+#designs{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:15px;
+    margin-top:20px;
+}
+
+.design{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(190,100,255,.2);
+    border-radius:15px;
+    padding:18px;
+}
+
+.nickname{
+    min-height:55px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+    word-break:break-word;
+    margin-bottom:15px;
+}
+
+.copy-btn{
+    width:100%;
+    padding:11px;
+    border:none;
+    border-radius:9px;
+    background:#24132f;
+    color:#fff;
+    cursor:pointer;
+}
+
+.copy-btn:hover{
+    background:#47205d;
+}
+
+.more-btn{
+    width:100%;
+    margin:25px 0 40px;
+    padding:14px;
+    border:1px solid #7c3fa1;
+    border-radius:12px;
+    background:#160d21;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.more-btn:hover{
+    background:#291439;
+}
+
+@media(max-width:600px){
+    h1{
+        font-size:24px;
+    }
+
+    .logo{
+        font-size:27px;
+    }
+
+    .generator{
+        padding:18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">NEXORA</div>
+    <h1>🔤 Nickname Designer</h1>
+    <p class="subtitle">Create stylish gaming names for Free Fire & other games</p>
+</header>
+
+<div class="container">
+
+    <div class="generator">
+
+        <input
+            type="text"
+            id="nameInput"
+            placeholder="Enter Your Name"
+            maxlength="30"
+        >
+
+        <button class="generate-btn" onclick="generateDesigns()">
+            ✨ Generate Designs
+        </button>
+
+        <div class="categories">
+            <button class="category active" onclick="setCategory('Pro',this)">🔥 Pro</button>
+            <button class="category" onclick="setCategory('Esports',this)">⚡ Esports</button>
+            <button class="category" onclick="setCategory('Royal',this)">👑 Royal</button>
+            <button class="category" onclick="setCategory('Dark',this)">💀 Dark</button>
+            <button class="category" onclick="setCategory('Stylish',this)">✨ Stylish</button>
+            <button class="category" onclick="setCategory('Premium',this)">💎 Premium</button>
+            <button class="category" onclick="setCategory('Gaming',this)">🎮 Gaming</button>
+            <button class="category" onclick="setCategory('Symbols',this)">🌀 Symbols</button>
+        </div>
+
+        <div id="designs"></div>
+
+        <button
+            id="moreBtn"
+            class="more-btn"
+            onclick="generateDesigns()"
+            style="display:none;"
+        >
+            🔄 Generate More
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+let currentCategory = "Pro";
+let currentOffset = 0;
+
+const styles = {
+
+Pro:[
+"亗 {name} 亗",
+"乂 {name} 乂",
+"『{name}』",
+"【{name}】",
+"么 {name} 么",
+"メ {name} メ",
+"〆{ name }〆",
+"乂༒{name}༒乂",
+"×͜× {name}",
+"⚡{name}⚡",
+"亗〆{name}〆亗",
+"『亗{name}亗』",
+"么〆{name}〆么",
+"乂⚡{name}⚡乂",
+"★彡{name}彡★",
+"☠︎ {name} ☠︎",
+"๛ {name} ๛",
+"◥{name}◤",
+"꧁{name}꧂",
+"乂★{name}★乂"
+],
+
+Esports:[
+"乂 E-SPORTS | {name} 乂",
+"『ES』{name}",
+"⚡ESPORTS⚡ {name}",
+"亗 {name} 亗",
+"【ES】{name}",
+"★ {name} ★",
+"Xx_{name}_xX",
+"么 {name} 么",
+"乂{name}乂",
+"『{name}』",
+"ツ{name}ツ",
+"亗{name}亗",
+"⚔ {name} ⚔",
+"⚡ {name} ⚡",
+"〆{name}〆",
+"『⚡{name}⚡』",
+"乂『{name}』乂",
+"★彡{name}彡★",
+"☯ {name} ☯",
+"么⚡{name}⚡么"
+],
+
+Royal:[
+"♛ {name} ♛",
+"♕ {name} ♕",
+"👑 {name} 👑",
+"꧁♛{name}♛꧂",
+"『♕{name}♕』",
+"亗♛{name}♛亗",
+"♚ {name} ♚",
+"༺♛{name}♛༻",
+"★KING★ {name}",
+"♛KING {name}♛",
+"👑『{name}』👑",
+"꧁👑{name}👑꧂",
+"♕彡{name}彡♕",
+"♛乂{name}乂♛",
+"⚜ {name} ⚜",
+"👑⚡{name}⚡👑",
+"༒♛{name}♛༒",
+"『ROYAL』{name}",
+"♚༒{name}༒♚",
+"亗👑{name}👑亗"
+],
+
+Dark:[
+"☠︎ {name} ☠︎",
+"༒ {name} ༒",
+"💀{name}💀",
+"『☠︎{name}☠︎』",
+"꧁༒{name}༒꧂",
+"亗☠︎{name}☠︎亗",
+"☠︎︎ {name} ☠︎︎",
+"༺💀{name}💀༻",
+"⚔☠️{name}☠️⚔",
+"𓆩{name}𓆪",
+"☬ {name} ☬",
+"༒☠︎{name}☠︎༒",
+"『DARK』{name}",
+"乂💀{name}💀乂",
+"☠︎彡{name}彡☠︎",
+"𒆜{name}𒆜",
+"⚫ {name} ⚫",
+"⛧ {name} ⛧",
+"༒𓆩{name}𓆪༒",
+"☠︎亗{name}亗☠︎"
+],
+
+Stylish:[
+"『{name}』",
+"꧁{name}꧂",
+"༺{name}༻",
+"彡{name}彡",
+"★彡{name}彡★",
+"×͜× {name}",
+"乂{name}乂",
+"ツ{name}ツ",
+"〆{name}〆",
+"么{name}么",
+"亗{name}亗",
+"メ{name}メ",
+"『ツ{name}ツ』",
+"乂『{name}』乂",
+"꧁༺{name}༻꧂",
+"✦ {name} ✦",
+"✧{name}✧",
+"❖ {name} ❖",
+"☯{name}☯",
+"⚡彡{name}彡⚡"
+],
+
+Premium:[
+"💎 {name} 💎",
+"꧁💎{name}💎꧂",
+"『💎{name}💎』",
+"亗💎{name}💎亗",
+"✦ {name} ✦",
+"✧ {name} ✧",
+"♛💎{name}💎♛",
+"༺💎{name}💎༻",
+"⚜ {name} ⚜",
+"❖ {name} ❖",
+"★💎{name}💎★",
+"『PREMIUM』{name}",
+"💠 {name} 💠",
+"✦彡{name}彡✦",
+"꧁✦{name}✦꧂",
+"亗✧{name}✧亗",
+"💎༒{name}༒💎",
+"♕💎{name}💎♕",
+"『✦{name}✦』",
+"꧁💠{name}💠꧂"
+],
+
+Gaming:[
+"🎮 {name} 🎮",
+"亗🎮{name}🎮亗",
+"『GAMER』{name}",
+"⚡GAMING⚡ {name}",
+"乂🎮{name}🎮乂",
+"꧁🎮{name}🎮꧂",
+"『🎮{name}🎮』",
+"☠︎🎮{name}🎮☠︎",
+"★GAMER★ {name}",
+"么GAMING么 {name}",
+"⚔ {name} ⚔",
+"🎯 {name} 🎯",
+"🔥 {name} 🔥",
+"🎮彡{name}彡🎮",
+"亗🔥{name}🔥亗",
+"『PRO』{name}",
+"乂⚡{name}⚡乂",
+"ツ🎮{name}🎮ツ",
+"〆GAMER〆 {name}",
+"꧁⚡{name}⚡꧂"
+],
+
+Symbols:[
+"『{name}』",
+"【{name}】",
+"〖{name}〗",
+"〘{name}〙",
+"〚{name}〛",
+"〈{name}〉",
+"《{name}》",
+"「{name}」",
+"『亗{name}亗』",
+"꧁{name}꧂",
+"༺{name}༻",
+"༒{name}༒",
+"乂{name}乂",
+"メ{name}メ",
+"〆{name}〆",
+"么{name}么",
+"ツ{name}ツ",
+"亗{name}亗",
+"彡{name}彡",
+"𓆩{name}𓆪"
+]
+
+};
+
+function setCategory(category, button){
+
+    currentCategory = category;
+    currentOffset = 0;
+
+    document.querySelectorAll(".category").forEach(btn=>{
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    const name = document.getElementById("nameInput").value.trim();
+
+    if(name){
+        generateDesigns();
+    }
+}
+
+function generateDesigns(){
+
+    const name = document.getElementById("nameInput").value.trim();
+
+    if(!name){
+        alert("Please enter your name first!");
+        document.getElementById("nameInput").focus();
+        return;
+    }
+
+    const list = styles[currentCategory];
+
+    const designs = document.getElementById("designs");
+
+    designs.innerHTML = "";
+
+    let selected = [];
+
+    for(let i=0;i<20;i++){
+
+        const index = (currentOffset + i) % list.length;
+
+        let design = list[index];
+
+        design = design.replaceAll("{ name }", name);
+        design = design.replaceAll("{name}", name);
+
+        selected.push(design);
+    }
+
+    currentOffset += 20;
+
+    selected.forEach(text=>{
+
+        const card = document.createElement("div");
+        card.className = "design";
+
+        const nickname = document.createElement("div");
+        nickname.className = "nickname";
+        nickname.textContent = text;
+
+        const button = document.createElement("button");
+        button.className = "copy-btn";
+        button.textContent = "📋 Copy";
+
+        button.onclick = async ()=>{
+
+            try{
+                await navigator.clipboard.writeText(text);
+                button.textContent = "✅ Copied!";
+            }catch(error){
+
+                const area = document.createElement("textarea");
+                area.value = text;
+                document.body.appendChild(area);
+                area.select();
+                document.execCommand("copy");
+                area.remove();
+
+                button.textContent = "✅ Copied!";
+            }
+
+            setTimeout(()=>{
+                button.textContent = "📋 Copy";
+            },1500);
+        };
+
+        card.appendChild(nickname);
+        card.appendChild(button);
+
+        designs.appendChild(card);
+    });
+
+    document.getElementById("moreBtn").style.display = "block";
+}
+
+document.getElementById("nameInput").addEventListener("keydown",function(e){
+
+    if(e.key === "Enter"){
+        generateDesigns();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
